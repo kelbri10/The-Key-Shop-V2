@@ -8,4 +8,4 @@ Below outlines the intended implementation and design goals:
 - [ ] Improve site performance and loading times
 - [ ] Layout Redesign 
 - [ ] Payment Integration: This is a carry over from the first version that I never got to implement
-- [ ] Rewwards System
+- [ ] Rewards System
