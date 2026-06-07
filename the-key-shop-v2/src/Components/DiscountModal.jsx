@@ -5,11 +5,16 @@ import { useState, useEffect, useRef } from "react";
 const DiscountModal  = () => { 
     const[email, setEmail] = useState(''); 
     const[isSignedUp, setIsSignedUp] = useState(false); 
+    const[warning, setWarning] = useState(null); 
     const dialogRef = useRef(null) //where dialog reference refers to the dialog html element node
 
     const handleSubmit = (e) => {
         console.log(email);
-        setIsSignedUp(true); 
+        if(email !== ""){
+            setIsSignedUp(true); 
+        } else{ 
+            setWarning('Please enter a valid email'); 
+        }
     }
 
     return (
@@ -37,7 +42,7 @@ const DiscountModal  = () => {
                             value={email}
                             onChange={e => setEmail(e.target.value)} />
                         <button onClick={() => handleSubmit()}>Submit</button>
-
+                        <p>{warning}</p>
 
                         <button id="dialog-toggle" onClick={()=> dialogRef.current.close()}>No Thanks!</button>
                     </>
