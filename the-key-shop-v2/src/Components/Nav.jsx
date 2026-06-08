@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { NavLink, Link } from "react-router";
 const Nav = () => { 
     const[searchQuery, setSearchQuery] = useState(''); 
 
@@ -8,7 +9,8 @@ const Nav = () => {
             <nav>
                 <img alt="company logo for The Key Shop" /> 
                 <ul role="menubar">
-                    <li><a role="menuiten" href="">Shop</a></li>
+                    <li><NavLink role="menuitem" to="/products">Shop</NavLink></li> 
+                    {/* prefer navlink because it has isActive, isPending states that can be used for styling purposes */}
                     <li><a role="menuitem" href="">About Us</a></li>
                     <li><a role="menuitem" href="">Community</a></li>
                 </ul>
