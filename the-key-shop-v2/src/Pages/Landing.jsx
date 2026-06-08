@@ -1,13 +1,14 @@
 import React from "react"; 
 import {useState, useEffect} from "react"; 
-import Popover from "../Components/DiscountModal";
+import DiscountModal from "../Components/DiscountModal";
+import Hero from "../Components/Hero";
 
 const Landing = () => {  
     return (
-        <div> 
-            <h1> The Key Shop </h1>
-            <Popover />
-        </div> 
+        <>
+            <Hero />
+            <DiscountModal />
+        </>
     )
 }
 
