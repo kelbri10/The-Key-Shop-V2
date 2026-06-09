@@ -2,12 +2,22 @@ import React from "react";
 import {useDispatch } from "react-redux"; 
 
 const ProductList = ({products}) => { 
-
-    console.log(products)
     
     return( 
         <>
-            <h1> Products </h1>
+            {
+                products.map((product, index) => (
+                    <div key={index}>
+                        <h1>{product.category}</h1>
+
+                        {product.products.map((item, index) => (
+                            <div key={index}>
+                                <p>{item.name}</p>
+                            </div>
+                        ))}
+                    </div>
+                ))
+            }
         </>
     )
 }
