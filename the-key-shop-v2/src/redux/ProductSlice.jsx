@@ -39,20 +39,10 @@ const productSlice = createSlice({
     name: "products", 
     initialState, 
     reducers: {
-        updateSwitchQuantity: (state, action) => { 
-            const { name, quantity} = action.payload; 
-            //i want to update so that when a person increase the number they want added to thier cart the quantity shows 18 * quantity for total buying if applicable
-        },
-        filterDisplay: (state, action) => { 
-            const { categoryFilter } = action.payload 
-
-            const filtered= state.filter(products=> categoryFilter.includes(products.category))
-
-            return filtered; 
-            //when the user selects specific category or categories display filters to show only what is selected, not sure of checkbox or dropdown
-        }
+       
     }
 })
 
 export const {filterDisplay} = productSlice.actions; 
 export default productSlice.reducer; 
+export const selectProducts = state => state.products
