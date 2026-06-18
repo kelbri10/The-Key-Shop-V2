@@ -26,6 +26,11 @@ const cartSlice = createSlice({
             }   
             
         }, 
+        deleteFromCart(state, action) {
+            const index = action.payload; 
+            let updated = state.cart.filter(item => state.cart.indexOf(item) !== index); 
+            state.cart = updated; 
+        },
         updateQuantity(state, action){ 
             const {name, num} = action.payload; 
             const existing = state.filter(item => item.name === name); 
@@ -52,6 +57,6 @@ const cartSlice = createSlice({
     }
 })
 
-export const {addToCart, updateQuantity} = cartSlice.actions; 
+export const {addToCart, deleteFromCart, updateQuantity} = cartSlice.actions; 
 export default cartSlice.reducer; 
 export const selectCart = state => state.cart;
