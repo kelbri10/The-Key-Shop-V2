@@ -1,22 +1,32 @@
 import React from "react";
 import { useState } from "react";
 import { NavLink, Link } from "react-router";
+import { useSelector } from "react-redux";
+import { selectCart } from "../../redux/CartSlice";
 const Nav = () => { 
     const[searchQuery, setSearchQuery] = useState(''); 
+
+    const { cart }= useSelector(selectCart)
+    const totalCartQuantity = () => {
+        let total = 0; 
+        cart.forEach(item => total += item.quantity); 
+       return total; 
+    }
 
     return(
         <section id="stickyheader">
             <nav>
                 <img alt="company logo for The Key Shop" /> 
                 <ul role="menubar">
+                    <li><NavLink role="menuitem" to="/">Home</NavLink></li>
                     <li><NavLink role="menuitem" to="/products">Shop</NavLink></li> 
-                    {/* prefer navlink because it has isActive, isPending states that can be used for styling purposes */}
                     <li><a role="menuitem" href="">About Us</a></li>
-                    <li><a role="menuitem" href="">Community</a></li>
+                    <li><NavLink role="menuitem" to="/checkout">Checkout {totalCartQuantity()}</NavLink></li>
+                    {/* prefer navlink because it has isActive, isPending states that can be used for styling purposes */}
                 </ul>
             </nav> 
 
-            <article>
+            {/* <article>
                 <label htmlFor="site-search">What are you looking for?</label>
                 <input 
                     type="search" 
@@ -25,7 +35,7 @@ const Nav = () => {
                     name="search" 
                     onChange={(e) => setSearchQuery(e.target.value)}/>
                 <button onClick={()=> console.log(searchQuery)}>Search</button>
-            </article>
+            </article> */}
         </section>
     )
 
