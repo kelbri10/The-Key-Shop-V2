@@ -32,28 +32,24 @@ const cartSlice = createSlice({
             state.cart = updated; 
         },
         updateQuantity(state, action){ 
-            const {name, num} = action.payload; 
-            const existing = state.filter(item => item.name === name); 
-
-            if(existing && existing.length > 0){
-                let itemToUpdate = existing[0] 
-                itemToUpdate.quantity += num; //where num can be -1 or +1 depending on whether + or - clicked
+            const {item, operation} = action.payload; 
+            const existing = state.cart.filter(cartItem => cartItem.name === item.name); 
+            let updatedQuantity; 
+            if(existing && existing.length > 0){ 
+                if(operation === "increase"){
+                    if(existing[0].quantity + 1 <= 5){ 
+                        let itemToUpdate = {...existing[0], quantity: existing[0].quantity++}; 
+                    } 
+                } else { 
+                    if(existing[0].quantity - 1 > 0){
+                        let itemToUpdate = {...existing[0], quantity: existing[0].quantity--}; 
+                    } 
+                }
+                
             }
 
+
         }
-        // increaseQuantity(state, action) {
-        //     const {name, quantity} = action.payload; 
-
-
-        //     if(existing && existing.quantity > 0){
-        //         existing.quantity++; 
-        //     }
-        // }, 
-        // decreaseQuantity (state, action) {
-        //     const {name, quantity} = action.payload; 
-        //     const existing = state.filter(item => item.name === name); 
-        //     if(existing && existing.quantity)
-        // }
     }
 })
 
