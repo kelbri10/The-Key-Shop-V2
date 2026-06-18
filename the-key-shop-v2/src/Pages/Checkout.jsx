@@ -1,11 +1,22 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux"; 
-import { selectCart } from "../redux/CartSlice";
+import { selectCart, deleteFromCart } from "../redux/CartSlice";
 import { NavLink } from "react-router";
 import Nav from "../features/Common/Nav";
 const Checkout = () => { 
     const state = useSelector(selectCart) 
-    console.log(JSON.stringify(state))
+    const dispatch = useDispatch(); 
+
+    const calculateTotalPrice = () => { 
+        let total = 0; 
+        state.cart.forEach(item => total += (item.price * item.quantity)) 
+        return total.toFixed(2); 
+    }
+
+    const handleDelete = (index) => {
+        dispatch(deleteFromCart(index))
+    }
+  
     return(
         <>
             <Nav />
@@ -19,17 +30,13 @@ const Checkout = () => {
                             <img src="https://placehold.co/300x200" />
                             <p>{item.name}</p>
                             <p>Quantity: {item.quantity}</p>
+                            <p>${item.price.toFixed(2)}</p>
+                            <button onClick={()=> handleDelete(index)}>Delete Item</button>
                         </div>
 
                     ))
                 }
-                {/* {cartItems ? cart.map((item,index )=> (
-                    <div key={index}>
-                        <p>{item.name}</p>
-                        <p>{item.price}</p>
-                        <p>{item.quantity}</p>
-                    </div>
-                )) : <p>No Items in Cart</p>} */}
+                <p>Total Price: ${calculateTotalPrice()}</p>
             </section>
         </>
     )
