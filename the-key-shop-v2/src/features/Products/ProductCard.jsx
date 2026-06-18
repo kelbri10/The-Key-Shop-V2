@@ -14,7 +14,7 @@ const ProductCard = ({product}) => {
         <div>
             <img src="https://placehold.co/600x400" alt="placeholder image with 600 x 400 px display" />
             <h3>{name}</h3>
-            <p>{price === "" ? "23.99" : price}</p>
+            <p>${price.toFixed(2)}</p>
             <button onClick={() => handleClick({name, img, price})}>Add to Cart</button>
         </div>
     )
