@@ -1,6 +1,6 @@
 import React from "react";
 import {useDispatch } from "react-redux"; 
-
+import ProductCard from "./ProductCard";
 const ProductList = ({products}) => { 
     
     return( 
@@ -12,7 +12,7 @@ const ProductList = ({products}) => {
 
                         {product.products.map((item, index) => (
                             <div key={index}>
-                                <p>{item.name}</p>
+                                <ProductCard product={item} />
                             </div>
                         ))}
                     </div>
