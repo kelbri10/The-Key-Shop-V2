@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux"; 
-import { selectCart, deleteFromCart } from "../redux/CartSlice";
+import { selectCart, deleteFromCart, updateQuantity } from "../redux/CartSlice";
 import { NavLink } from "react-router";
 import Nav from "../features/Common/Nav";
 const Checkout = () => { 
@@ -16,6 +16,10 @@ const Checkout = () => {
     const handleDelete = (index) => {
         dispatch(deleteFromCart(index))
     }
+
+    const handleUpdate = (item, operation) => {  
+        dispatch(updateQuantity({item, operation}))
+    } 
   
     return(
         <>
@@ -29,7 +33,7 @@ const Checkout = () => {
                         <div key={index}>
                             <img src="https://placehold.co/300x200" />
                             <p>{item.name}</p>
-                            <p>Quantity: {item.quantity}</p>
+                            <p><button id="decrease" onClick={() => handleUpdate(item, "decrease")}>-</button> {item.quantity} <button id="increase" onClick={() => handleUpdate(item, "increase")}>+</button></p>
                             <p>${item.price.toFixed(2)}</p>
                             <button onClick={()=> handleDelete(index)}>Delete Item</button>
                         </div>
