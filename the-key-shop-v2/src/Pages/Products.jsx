@@ -2,16 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import ProductList from "../features/Products/ProductList";
-import { filterDisplay, selectProducts} from "../redux/ProductSlice";
+import { selectProducts} from "../redux/ProductSlice";
+import { NavLink } from "react-router";
+import Nav from "../features/Common/Nav";
 
 const Products = () => { 
     const allProducts = useSelector(selectProducts)
-    
+
     const [filters, setFilters] = useState([]); 
     const [displayProducts, setDisplayProducts] = useState(allProducts); 
     
     const dispatch = useDispatch(); 
-
 
     const handleChange = (e) => { 
         let updatedFilters = []; 
@@ -38,6 +39,7 @@ const Products = () => {
     return (
         // there needs to be a component here that handles the checkbox and the filter to affect products and pass the filtered/unflitered products to product list
         <section>
+            <Nav />
             <h1>Products</h1>
             <fieldset> 
                 <legend>Filter products: </legend>
